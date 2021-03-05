@@ -1,0 +1,32 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+
+    <div class="card">
+        
+        <section class="details">
+
+            <form method="POST" action="/todos?_method=PUT">
+
+                <h3>Edit Todo</h3>
+
+                {% include 'todos/fields.njk'%}
+
+                <input type="hidden" name="id" value="{{ todo.id }}">
+
+            </form>
+
+            <form id="form-delete" method="POST" action="/todos?_method=DELETE">
+
+                <input type="hidden" name="id" value="{{ todo.id }}">
+                <button type="submit">Delete</button>
+
+            </form>
+
+            {% include 'confirm.njk' %}
+
+        </section>
+
+    </div>
+
+{% endblock content %}

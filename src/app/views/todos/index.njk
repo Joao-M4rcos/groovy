@@ -1,0 +1,60 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+
+    <div class="card-table table-container">
+
+        <div class="header">
+
+            <a href="/todos/create" class="button">Add</a>
+            <form action="/todos" method="GET">
+                <input 
+                type="text" 
+                name="filter" 
+                placeholder="Title"
+                value={{ filter }}>
+                <button type="submit">Filter</button>
+            </form>
+
+        </div>
+
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Completed</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                    <tr>
+                        <td>{{ todo.title }}</td>
+                        {% if todo.completed == 'true' %}
+                        <td><i class="material-icons">
+                            check_circle
+                        </i>
+                        {% endif %}
+                        {% if todo.completed == 'false' %}
+                        <td><i class="material-icons">
+                            unpublished
+                        </i>
+                        {% endif %}      
+                            </td>
+                        <td>
+                            <a href="/todos/{{ todo.id }}">Show</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    <div class="pagination"
+        data-page={{ pagination.page }}
+        data-total={{ pagination.total }}
+        data-filter={{ filter }}>  
+    </div>
+
+    </div>
+
+{% endblock content %}

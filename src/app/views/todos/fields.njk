@@ -1,15 +1,22 @@
-<div class="item">
+<div class="item completed">
     <div>Title</div>
     <div>
-        <input type="text" name="title" placeholder="Post Title"
-        value="{{ post.title }}">
+        <input type="text" name="title" placeholder="Todo Title"
+        value="{{ todo.title }}">
     </div>
 </div>
 
-<div class="item">
-    <div>Description</div>
+<div class="item completed">
+    <div>Completed</div>
     <div>
-        <textarea name="body">{{post.body}}</textarea>
+        <span><input type="radio" name="status" value="true" 
+        {% if todo.completed == "true" %}
+        checked
+        {% endif %}>Yes</span>
+        <span><input type="radio" name="status" value="false"
+        {% if todo.completed == "false" %}
+        checked
+        {% endif %}>No</span>
     </div>
 </div>
 

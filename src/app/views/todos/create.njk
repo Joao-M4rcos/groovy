@@ -2,14 +2,15 @@
 
 {% block content %}
 
-    <form class="card" method="POST" action="/posts">
+    <form class="card" method="POST" action="/todos">
         <section class="details">
 
-            <h3>Add Post</h3>
+            <h3>Add To-dos</h3>
 
-            {% include 'posts/fields.njk'%}
+            {% include 'todos/fields.njk'%}
 
         </section>
     </form>
+    
 
 {% endblock content %}

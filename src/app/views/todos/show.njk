@@ -1,0 +1,36 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+
+    <div class="card">
+
+        <section class="details">
+
+            <h3>Details</h3>
+
+            <div class="item completed">
+                <div>Title</div>
+                <div>
+                    {{ todo.title }}
+                </div>
+            </div>
+
+            <div class="item completed">
+                <div>Completed</div>
+                      {% if todo.completed == 'true' %}
+                        <td><i class="material-icons">
+                            check_circle
+                        </i>
+                        {% endif %}
+                        {% if todo.completed == 'false' %}
+                        <td><i class="material-icons">
+                            unpublished
+                        </i>
+                        {% endif %}  
+            </div>
+
+            <a href="/todos/{{ todo.id }}/edit" class="button">Edit</a>
+        </section>
+    </div>
+
+{% endblock content %}
