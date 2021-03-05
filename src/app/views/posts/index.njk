@@ -1,0 +1,50 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+
+    <div class="card-table table-container">
+
+        <div class="header">
+
+            <a href="/posts/create" class="button">Add</a>
+            <form action="/posts" method="GET">
+                <input 
+                type="text" 
+                name="filter" 
+                placeholder="Title or Description"
+                value={{ filter }}>
+                <button type="submit">Filter</button>
+            </form>
+
+        </div>
+
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.body }}</td>
+                        <td>
+                            <a href="/posts/{{ post.id }}">Show</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    <div class="pagination"
+        data-page={{ pagination.page }}
+        data-total={{ pagination.total }}
+        data-filter={{ filter }}>  
+    </div>
+
+    </div>
+
+{% endblock content %}

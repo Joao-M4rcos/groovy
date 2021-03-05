@@ -1,0 +1,32 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+
+    <div class="card">
+        
+        <section class="details">
+
+            <form method="POST" action="/posts?_method=PUT">
+
+                <h3>Edit Post</h3>
+
+                {% include 'posts/fields.njk'%}
+
+                <input type="hidden" name="id" value="{{ post.id }}">
+
+            </form>
+
+            <form id="form-delete" method="POST" action="/posts?_method=DELETE">
+
+                <input type="hidden" name="id" value="{{ post.id }}">
+                <button type="submit">Delete</button>
+
+            </form>
+
+            {% include 'confirm.njk' %}
+
+        </section>
+
+    </div>
+
+{% endblock content %}
