@@ -1,0 +1,38 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<section class="container form">
+    <form method="POST" action="/albums?_method=PUT" enctype="multipart/form-data">
+    
+        <div class="header">
+            <h3>Edit Album</h3>
+        </div>
+
+        <div class="fields">
+
+            {% include 'albums/fields.njk' %}
+
+            <input 
+                type="hidden"
+                name="id"
+                value={{album.id}}>
+
+        </div>    
+
+        <button class="button edit" type="submit">Update</button>
+    </form>
+
+    <form id="form-delete" action="/albums?_method=DELETE" method="POST">
+        <input 
+            type="hidden"
+            name="id"
+            value={{album.id}}>
+        <button class="button delete" type="submit">Delete</button>
+    </form>
+
+</section>
+
+{% include "confirm.njk" %}
+
+{% endblock content %}

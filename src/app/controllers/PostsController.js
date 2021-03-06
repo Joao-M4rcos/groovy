@@ -18,6 +18,8 @@ module.exports = {
             offset,
             callback(posts) {
 
+                if(posts.length == 0) return res.redirect("posts/create")
+
                 const pagination = {
                     total: Math.ceil(posts[0].total / limit),
                     page

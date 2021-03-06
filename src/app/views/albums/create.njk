@@ -1,0 +1,17 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+
+    <form class="card" method="POST" action="/albums" enctype="multipart/form-data">
+        <section class="details">
+
+            <h3>Add Album</h3>
+
+            {% include 'albums/fields.njk'%}
+
+            <button class="button" type="submit">Save</button>
+        </section>
+
+    </form>
+
+{% endblock content %}

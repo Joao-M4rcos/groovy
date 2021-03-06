@@ -1,10 +1,15 @@
 const express = require('express')
 const PostController = require('./app/controllers/postsController')
 const TodoController = require('./app/controllers/TodosController')
+const AlbumController = require('./app/controllers/AlbumsController')
 const routes = express.Router()
+const multer = require('./app/middlewares/multer')
+const fetch = require('node-fetch')
+const db = require('../src/config/db')
+
 
 routes.get('/', (req, res) => {
-    return res.redirect("/todos")
+    return res.redirect("/posts")
 })
 
 routes.get('/posts', PostController.index)
@@ -25,6 +30,14 @@ routes.get('/todos/:id/edit', TodoController.edit)
 routes.post('/todos', TodoController.post)
 routes.put('/todos', TodoController.put)
 routes.delete('/todos', TodoController.delete)
+
+routes.get('/albums', AlbumController.index)
+routes.get('/albums/create', AlbumController.create)
+routes.get('/albums/:id', AlbumController.show)
+routes.get('/albums/:id/edit', AlbumController.edit)
+routes.post('/albums', multer.array("photos", 6), AlbumController.post)
+routes.put('/albums', multer.array("photos", 6), AlbumController.put)
+routes.delete('/albums', AlbumController.delete)
 
 module.exports = routes
 

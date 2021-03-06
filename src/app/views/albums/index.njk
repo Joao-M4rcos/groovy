@@ -1,0 +1,45 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<section class="shop container">
+    
+{% if title %}
+<h2>{{title}}</h2>
+{% endif %}
+
+<div class="item">
+
+ {% for album in album %}
+
+<a href="/albums/{{album.id}}">  
+     <div class="product">
+         <div class="image"
+             style="background-image: url('{{album.img if album.img else 'https://source.unsplash.com/collection/11493026/500x500'}}')"
+         >
+         </div>
+
+         <h4>{{album.title}}</h4>
+         
+                  
+         </div>
+         </a>  
+
+ {% endfor %}
+
+</div>
+            
+    <div class="pagination"
+        data-page={{ pagination.page }}
+        data-total={{ pagination.total }}
+        data-filter={{ filter }}>  
+    </div>
+
+        <div   div class="buy">
+                    <a href="/albums/create" class="button">Add</a>
+                </div>
+
+
+</section>
+
+{% endblock content %}
